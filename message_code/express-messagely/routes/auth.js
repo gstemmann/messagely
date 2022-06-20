@@ -40,7 +40,7 @@ const ExpressError = require("../expressError");
  router.post("/register", async function (req, res, next) {
     try {
       let {username} = await User.register(req.body);
-      let token = jwt.sign({username}, SECRET_KEY);
+      let token = jwt.sign({username, new_thing: "old thing"}, SECRET_KEY);
       User.updateLoginTimestamp(username);
       return res.json({token});
     }
